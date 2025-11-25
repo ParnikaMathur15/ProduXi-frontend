@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 export default function WSummaryBlock({ userId }) {
+    const API_URL = import.meta.env.VITE_BACKEND_URL;
     const [ws, setWS] = useState([]);
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/week_summary?user_id=${userId}`)
+        fetch(`${API_URL}/week_summary?user_id=${userId}`)
             .then(res => res.json())
             .then(data => {setWS(data.ws);})
             .catch(console.error);

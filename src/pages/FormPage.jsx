@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { convertFormValues } from "../valueMappings";
 
 function FormPage() {
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const [focusLevel, setFocusLevel] = useState(3);
   const [moodLevel, setMoodLevel] = useState(3);
   const [overthinkingLevel, setOverthinkingLevel] = useState("Not at all");
@@ -106,7 +107,6 @@ function FormPage() {
     setSummaryData(formData);
 
     try {
-      const API_URL = "http://127.0.0.1:8000";
       const userId = user ? user.uid : sessionId;
       const is_guest=!user;
       const response = await axios.post(`${API_URL}/submit-form/`,{uid:userId, is_guest, form_data:formData});
@@ -121,8 +121,6 @@ function FormPage() {
 
   const handleDownloadPDF = async () => {
     try {
-        const API_URL = "http://127.0.0.1:8000";
-
         const payload = {
         form_inputs: convertFormValues(summaryData),            
         health_score: result.health_score,          
@@ -158,7 +156,7 @@ function FormPage() {
         if (!user) return; 
         try {
         const response = await axios.get(
-            `http://127.0.0.1:8000/last-log?user_id=${user.uid}`
+            `${API_URL}/last-log?user_id=${user.uid}`
         );
         const log = response.data.last_log;
         setLastLog(log);

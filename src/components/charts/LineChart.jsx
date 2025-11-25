@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
 export default function LineChart({ userId }) {
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const [base64, setBase64] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!userId) return;
-    fetch(`http://127.0.0.1:8000/chart/line?user_id=${userId}`)
+    fetch(`${API_URL}/chart/line?user_id=${userId}`)
       .then(res => res.json())
       .then(data => setBase64(data.chart))
       .catch(err => setError(err.message));

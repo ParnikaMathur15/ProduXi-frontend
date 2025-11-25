@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function AverageScores({ userId }) {
+    const API_URL = import.meta.env.VITE_BACKEND_URL;
     const [health_avg, setHealthAvg] = useState(null);
     const [prod_avg, setProdAvg] = useState(null);
 
@@ -17,7 +18,7 @@ export default function AverageScores({ userId }) {
         setHealthAvg(null);
         setProdAvg(null);
 
-        fetch(`http://127.0.0.1:8000/avg-scores?user_id=${userId}`)
+        fetch(`${API_URL}/avg-scores?user_id=${userId}`)
             .then(res => res.json())
             .then(data => {
                 setHealthAvg(data.health_avg);
