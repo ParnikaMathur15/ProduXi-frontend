@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .nbtn {
+        @apply w-24 px-2 py-2 font-semibold rounded transition hover:font-bold;
+    }
+}
