@@ -1,3 +1,8 @@
-export default function handler(req, res) {
-  res.status(200).json({ message: "OK" });
-}
+export const config = {
+  runtime: "edge",
+  regions: ["sin1"],
+};
+
+export default (req) => new Response(JSON.stringify({ message: "OK" }), {
+  headers: { "Content-Type": "application/json" },
+});
