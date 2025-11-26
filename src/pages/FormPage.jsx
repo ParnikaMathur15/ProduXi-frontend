@@ -187,10 +187,10 @@ function FormPage() {
 
 
     useEffect(() => {
-        if (!loading) return; // stop when not loading
+        if (!loading) return; 
         const interval = setInterval(() => {
         setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
-        }, 2000); // every 2 seconds
+        }, 5000); 
 
         return () => clearInterval(interval);
     }, [loading]);
