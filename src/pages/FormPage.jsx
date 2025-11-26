@@ -64,6 +64,7 @@ function FormPage() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [messageIndex, setMessageIndex] = useState(0);
 
   const loadingMessages = ["Fetching your productivity insights..", "Hang tight! I’m turning your inputs into a productivity story.", "Analyzing your data..Almost there!", "Your summary is coming soon!!",];
 
