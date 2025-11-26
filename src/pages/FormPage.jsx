@@ -66,7 +66,7 @@ function FormPage() {
   const [error, setError] = useState(null);
   const [messageIndex, setMessageIndex] = useState(0);
 
-  const loadingMessages = ["Fetching your productivity insights..", "Hang tight! I’m turning your inputs into a productivity story.", "Analyzing your data..Almost there!", "Your summary is coming soon!!",];
+  const loadingMessages = ["Fetching your productivity insights..", "Hang tight! I’m turning your inputs into a productivity story..", "Analyzing your data..Almost there!", "Finalizing your daily summary..",];
 
   if (!localStorage.getItem("session_id")) {
     localStorage.setItem("session_id", uuidv4());
@@ -190,7 +190,7 @@ function FormPage() {
         if (!loading) return; 
         const interval = setInterval(() => {
         setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
-        }, 5000); 
+        }, 10000); 
 
         return () => clearInterval(interval);
     }, [loading]);
