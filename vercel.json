@@ -1,5 +1,6 @@
 {
   "regions": ["sin1"],
+  "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist"
 }
