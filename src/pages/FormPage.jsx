@@ -65,6 +65,8 @@ function FormPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const loadingMessages = ["Fetching your productivity insights..", "Hang tight! I’m turning your inputs into a productivity story.", "Analyzing your data..Almost there!", "Your summary is coming soon!!",];
+
   if (!localStorage.getItem("session_id")) {
     localStorage.setItem("session_id", uuidv4());
   }
@@ -181,6 +183,16 @@ function FormPage() {
 
     fetchLastLog();
     }, [user]);
+
+
+    useEffect(() => {
+        if (!loading) return; // stop when not loading
+        const interval = setInterval(() => {
+        setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+        }, 2000); // every 2 seconds
+
+        return () => clearInterval(interval);
+    }, [loading]);
 
 
   return (
@@ -464,7 +476,7 @@ function FormPage() {
 
         </form>
 
-        {loading && <p className="mt-6 text-gray-300">Loading...</p>}
+        {loading && <p className="mt-6 text-gray-300">⏳{loadingMessages[messageIndex]}</p>}
         {error && <p className="mt-6 text-red-400">{error}</p>}
 
         {result && (
